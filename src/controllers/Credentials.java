@@ -36,7 +36,7 @@ public enum Credentials {
 
 		// dice
 
-		this.dDice = 100;
+		this.dDice = 150;
 
 	}
 

@@ -24,7 +24,8 @@ public enum InstantiateComponents {
 			eColors.addLast(eColors.removeFirst());
 
 		}
-
+		
+		Lists.INSTANCE.dice.getArrayList().shuffle();
 		Lists.INSTANCE.dice.relocateImageViews();
 
 	}
