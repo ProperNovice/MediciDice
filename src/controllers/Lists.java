@@ -16,6 +16,7 @@ public enum Lists {
 		// dice
 
 		this.dice = new ListImageViewAbles<>();
+		this.dice.getListCredentials().coordinatesList = Credentials.INSTANCE.cDice;
 
 	}
 

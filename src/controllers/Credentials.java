@@ -18,7 +18,7 @@ public enum Credentials {
 	public ArrayList<Class<?>> lineCastExcludeList = new ArrayList<Class<?>>();
 	public RearrangeTypeEnum rearrangeTypeEnumText = RearrangeTypeEnum.LINEAR;
 	public Vector2 dFrame, dGapBetweenComponents, dGapBetweenComponentsLineCast;
-	public Vector2 cTextPanel;
+	public Vector2 cTextPanel, cDice;
 	public double dDice;
 
 	private Credentials() {
@@ -34,9 +34,17 @@ public enum Credentials {
 
 		this.cTextPanel = new Vector2(x, y);
 
-		// dice
+		// d dice
 
 		this.dDice = 150;
+
+		// c dice
+
+		x = this.gapBetweenBorders;
+		y = this.dFrame.y;
+		y -= this.gapBetweenBorders;
+		y -= this.dDice;
+		this.cDice = new Vector2(x, y);
 
 	}
 
