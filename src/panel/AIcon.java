@@ -1,6 +1,7 @@
 package panel;
 
 import controllers.Credentials;
+import enums.ELayerZ;
 import utils.ImageView;
 import utils.Interfaces.IImageViewAble;
 
@@ -12,11 +13,13 @@ public abstract class AIcon implements IImageViewAble {
 		filePath += getFilePath();
 		filePath += ".png";
 
-		new ImageView(filePath, this);
+		new ImageView(filePath, getELayerZ(), this);
 		getImageView().setWidth(Credentials.INSTANCE.dIcon);
 
 	}
 
 	protected abstract String getFilePath();
+
+	protected abstract ELayerZ getELayerZ();
 
 }

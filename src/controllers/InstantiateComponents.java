@@ -11,7 +11,6 @@ public enum InstantiateComponents {
 	public void instantiate() {
 
 		dice();
-		PanelStatistics.INSTANCE.instantiate();
 
 	}
 
@@ -25,7 +24,7 @@ public enum InstantiateComponents {
 			eColors.addLast(eColors.removeFirst());
 
 		}
-		
+
 		Lists.INSTANCE.dice.getArrayList().shuffle();
 		Lists.INSTANCE.dice.relocateImageViews();
 
