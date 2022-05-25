@@ -25,7 +25,7 @@ public class Dice implements IImageViewAble, IEventHandlerAble {
 		this.diceSides.addLast(new DiceSideWhite());
 
 		new ImageView(this.diceSides.getRandom().getImage(), this);
-		getImageView().setWidth(Credentials.INSTANCE.dDice);
+		getImageView().setWidth(Credentials.INSTANCE.dIcon);
 
 		roll();
 
