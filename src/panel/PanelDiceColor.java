@@ -7,12 +7,12 @@ import utils.ListImageViewAbles;
 import utils.ObjectPool;
 import utils.Vector2;
 
-public class ColorPanel {
+public class PanelDiceColor {
 
 	private ListImageViewAbles<AIcon> listX = null;
 	private ListImageViewAbles<AIcon> listO = null;
 
-	public ColorPanel(EColor eColor, Vector2 coordinates) {
+	public PanelDiceColor(EColor eColor, Vector2 coordinates) {
 
 		new ColorEmpty(eColor).getImageView().relocateTopLeft(coordinates);
 

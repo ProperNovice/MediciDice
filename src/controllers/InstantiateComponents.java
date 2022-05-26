@@ -11,6 +11,7 @@ public enum InstantiateComponents {
 	public void instantiate() {
 
 		dice();
+		Model.INSTANCE.toString();
 
 	}
 

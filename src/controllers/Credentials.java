@@ -18,7 +18,7 @@ public enum Credentials {
 	public ArrayList<Class<?>> lineCastExcludeList = new ArrayList<Class<?>>();
 	public RearrangeTypeEnum rearrangeTypeEnumText = RearrangeTypeEnum.LINEAR;
 	public Vector2 dFrame, dGapBetweenComponents, dGapBetweenComponentsLineCast;
-	public Vector2 cTextPanel, cDice, cPanelStatistics;
+	public Vector2 cTextPanel, cDice, cPanelDiceColor, cPanelDiceCapacity, cPanelScore;
 	public double dIcon;
 
 	private Credentials() {
@@ -46,10 +46,24 @@ public enum Credentials {
 		y -= this.dIcon;
 		this.cDice = new Vector2(x, y);
 
-		// c panel statistics
+		// c panel dice color
 
 		x = this.gapBetweenBorders;
-		this.cPanelStatistics = new Vector2(x, x);
+		this.cPanelDiceColor = new Vector2(x, x);
+
+		// c panel dice capacity
+
+		x = this.gapBetweenBorders;
+		y = this.cPanelDiceColor.y;
+		y += 5 * (this.dIcon + this.dGapBetweenComponents.x);
+		this.cPanelDiceCapacity = new Vector2(x, y);
+
+		// c panel score
+
+		x = this.gapBetweenBorders;
+		y = this.cPanelDiceCapacity.y;
+		y += this.dIcon + this.dGapBetweenComponents.x;
+		this.cPanelScore = new Vector2(x, y);
 
 	}
 

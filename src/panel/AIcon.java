@@ -20,6 +20,8 @@ public abstract class AIcon implements IImageViewAble {
 
 	protected abstract String getFilePath();
 
-	protected abstract ELayerZ getELayerZ();
+	protected ELayerZ getELayerZ() {
+		return ELayerZ.DEFAULT;
+	}
 
 }
