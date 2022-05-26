@@ -24,4 +24,22 @@ public class PanelDiceCapacity {
 
 	}
 
+	public void reduceCapacity(int value) {
+		this.capacity -= value;
+		displayCapacity();
+	}
+
+	public void setCapacity(int value) {
+		this.capacity = value;
+		displayCapacity();
+	}
+
+	private void displayCapacity() {
+		this.panelNumbers.setNumber(this.capacity);
+	}
+
+	public int getCapacity() {
+		return this.capacity;
+	}
+
 }

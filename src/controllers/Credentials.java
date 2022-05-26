@@ -38,10 +38,18 @@ public enum Credentials {
 
 		this.dIcon = 100;
 
+		// c panel score
+
+		x = this.gapBetweenBorders;
+		y = this.gapBetweenBorders;
+		this.cPanelScore = new Vector2(x, y);
+
 		// c panel dice color
 
 		x = this.gapBetweenBorders;
-		this.cPanelDiceColor = new Vector2(x, x);
+		y = this.cPanelScore.y;
+		y += this.dIcon + this.dGapBetweenComponents.y;
+		this.cPanelDiceColor = new Vector2(x, y);
 
 		// c panel dice capacity
 
@@ -50,17 +58,10 @@ public enum Credentials {
 		y += 5 * (this.dIcon + this.dGapBetweenComponents.x);
 		this.cPanelDiceCapacity = new Vector2(x, y);
 
-		// c panel score
-
-		x = this.gapBetweenBorders;
-		y = this.cPanelDiceCapacity.y;
-		y += this.dIcon + this.dGapBetweenComponents.x;
-		this.cPanelScore = new Vector2(x, y);
-
 		// c dice
 
 		x = this.gapBetweenBorders;
-		y = this.cPanelScore.y;
+		y = this.cPanelDiceCapacity.y;
 		y += this.dIcon + 15 * this.dGapBetweenComponents.x;
 		this.cDice = new Vector2(x, y);
 

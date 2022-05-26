@@ -24,4 +24,13 @@ public class PanelScore {
 
 	}
 
+	public void setScore(int value) {
+		this.score = value;
+		this.panelNumbers.setNumber(this.score);
+	}
+
+	public int getScore() {
+		return this.score;
+	}
+
 }
