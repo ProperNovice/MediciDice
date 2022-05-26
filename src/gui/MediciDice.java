@@ -24,7 +24,7 @@ import utils.Vector2;
 public class MediciDice extends Application {
 
 	private Vector2 dimensionsInsets = new Vector2(16, 39);
-	private double pixesOnTheLeft = 180;
+	private double pixesOnTheLeft = 180 - 180;
 
 	@Override
 	public void start(Stage primaryStage) throws Exception {

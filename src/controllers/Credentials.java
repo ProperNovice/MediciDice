@@ -38,14 +38,6 @@ public enum Credentials {
 
 		this.dIcon = 100;
 
-		// c dice
-
-		x = this.gapBetweenBorders;
-		y = this.dFrame.y;
-		y -= this.gapBetweenBorders;
-		y -= this.dIcon;
-		this.cDice = new Vector2(x, y);
-
 		// c panel dice color
 
 		x = this.gapBetweenBorders;
@@ -64,6 +56,21 @@ public enum Credentials {
 		y = this.cPanelDiceCapacity.y;
 		y += this.dIcon + this.dGapBetweenComponents.x;
 		this.cPanelScore = new Vector2(x, y);
+
+		// c dice
+
+		x = this.gapBetweenBorders;
+		y = this.cPanelScore.y;
+		y += this.dIcon + 15 * this.dGapBetweenComponents.x;
+		this.cDice = new Vector2(x, y);
+
+		// frame
+
+		x = 13 * this.dIcon;
+		x += 12 * this.dGapBetweenComponents.x;
+		y = this.cDice.y;
+		y += this.dIcon + this.gapBetweenBorders;
+		this.dFrame = new Vector2(x, y);
 
 	}
 
