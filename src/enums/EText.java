@@ -13,6 +13,8 @@ public enum EText {
 	VOID("", TextTypeEnum.INDICATOR),
 	ROLL_DICE("Roll dice", TextTypeEnum.OPTION),
 	CHOOSE_DICE("Choose dice", TextTypeEnum.INDICATOR),
+	PHASES_ENDED_SCORING("Phase ended - Scoring", TextTypeEnum.INDICATOR),
+	START_NEW_PHASE("Start new phase", TextTypeEnum.INDICATOR),
 
 	;
 

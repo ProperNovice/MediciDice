@@ -1,12 +1,13 @@
 package panel;
 
 import controllers.Credentials;
+import utils.Interfaces.ISaveLoadStateAble;
 import utils.PanelNumbers;
 import utils.Vector2;
 
-public class PanelScore {
+public class PanelScore implements ISaveLoadStateAble {
 
-	private int score = 0;
+	private int scoreCurrent = 0, scoreState = 0;
 	private IconScore iconCapacity = new IconScore();
 	private PanelNumbers panelNumbers = null;
 
@@ -18,22 +19,38 @@ public class PanelScore {
 		coordinates.x += Credentials.INSTANCE.dIcon;
 		coordinates.x += Credentials.INSTANCE.dGapBetweenComponents.x;
 		this.panelNumbers.getListCredentials().coordinatesList = coordinates;
-		this.panelNumbers.setNumber(this.score);
+		this.panelNumbers.setNumber(this.scoreCurrent);
 
 	}
 
 	public void setScore(int value) {
-		this.score = value;
-		this.panelNumbers.setNumber(this.score);
+		this.scoreCurrent = value;
+		displayScore();
 	}
 
 	public void addScore(int value) {
-		this.score += value;
-		this.panelNumbers.setNumber(this.score);
+		this.scoreCurrent += value;
+		displayScore();
 	}
 
 	public int getScore() {
-		return this.score;
+		return this.scoreCurrent;
+	}
+
+	@Override
+	public void saveState() {
+		this.scoreState = this.scoreCurrent;
+		displayScore();
+	}
+
+	@Override
+	public void loadState() {
+		this.scoreCurrent = this.scoreState;
+		displayScore();
+	}
+
+	private void displayScore() {
+		this.panelNumbers.setNumber(this.scoreCurrent);
 	}
 
 }

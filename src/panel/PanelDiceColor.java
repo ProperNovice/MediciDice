@@ -2,7 +2,6 @@ package panel;
 
 import controllers.Credentials;
 import enums.EColor;
-import enums.EPlayer;
 import utils.ListImageViewAbles;
 import utils.ObjectPool;
 import utils.Vector2;
@@ -41,13 +40,12 @@ public class PanelDiceColor {
 		addScoreRelocate(IconO.class, this.listO);
 	}
 
-	public EPlayer getPlayerWinner() {
+	public int getScoreHuman() {
+		return this.listX.getArrayList().size();
+	}
 
-		if (this.listX.getArrayList().size() >= this.listO.getArrayList().size())
-			return EPlayer.HUMAN;
-		else
-			return EPlayer.BOT;
-
+	public int getScoreBot() {
+		return this.listO.getArrayList().size();
 	}
 
 	private void addScoreRelocate(Class<? extends AIcon> iconClass,

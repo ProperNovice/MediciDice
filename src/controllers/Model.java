@@ -7,6 +7,10 @@ import enums.EColor;
 import panel.PanelDiceCapacity;
 import panel.PanelDiceColor;
 import panel.PanelScore;
+import phases.APhase;
+import phases.PhaseI;
+import phases.PhaseII;
+import phases.PhaseIII;
 import utils.ArrayList;
 import utils.HashMap;
 import utils.SelectImageViewManager;
@@ -21,6 +25,53 @@ public enum Model {
 	private PanelScore panelScoreTotal = new PanelScore(Credentials.INSTANCE.cPanelScoreTotal, 3);
 	private PanelScore panelScoreCurrentRound = new PanelScore(
 			Credentials.INSTANCE.cPanelScoreCurrentRound, 2);
+	private ArrayList<APhase> phases = new ArrayList<>();
+
+	public void setScoreTotal() {
+
+		boolean botHasNineValue = false;
+
+		for (EColor eColor : this.panelColor)
+			if (this.panelColor.getValue(eColor).getScoreBot() >= 9)
+				botHasNineValue = true;
+
+		if (botHasNineValue)
+			return;
+
+		int score = 0;
+
+		for (EColor eColor : this.panelColor) {
+
+			int humanValue = this.panelColor.getValue(eColor).getScoreHuman();
+			int botValue = this.panelColor.getValue(eColor).getScoreBot();
+
+			if (humanValue >= botValue)
+				score += 10;
+
+		}
+
+		int currentScore = this.panelScoreCurrentRound.getScore();
+
+		if (currentScore >= 20)
+			score += currentScore;
+
+		this.panelScoreTotal.addScore(score);
+
+	}
+
+	public void startNewPhase() {
+
+		this.phases.removeFirst();
+
+		int diceCapacity = this.phases.getFirst().getDiceCapacity();
+		this.panelDiceCapacity.setCapacity(diceCapacity);
+		this.panelScoreCurrentRound.loadState();
+
+	}
+
+	public boolean phaseCurrentEnded() {
+		return this.panelDiceCapacity.getCapacity() == 0;
+	}
 
 	public void scoreDice() {
 
@@ -127,6 +178,12 @@ public enum Model {
 			cPanelStatistics.y += Credentials.INSTANCE.dGapBetweenComponents.y;
 
 		}
+
+		// phases
+
+		this.phases.addLast(new PhaseI());
+		this.phases.addLast(new PhaseII());
+		this.phases.addLast(new PhaseIII());
 
 	}
 
