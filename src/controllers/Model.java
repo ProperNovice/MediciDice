@@ -110,6 +110,12 @@ public enum Model {
 
 			score += 10;
 
+			if (humanValue >= 9)
+				score += 10;
+
+			if (humanValue == 12)
+				score += 10;
+
 		}
 
 		this.panelScoreTotal.addScore(score);

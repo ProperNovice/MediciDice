@@ -75,6 +75,7 @@ public enum Credentials {
 
 		x = 13 * this.dIcon;
 		x += 12 * this.dGapBetweenComponents.x;
+		x += 2 * this.gapBetweenBorders;
 		y = this.cDice.y;
 		y += this.dIcon + this.gapBetweenBorders;
 		this.dFrame = new Vector2(x, y);
