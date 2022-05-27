@@ -7,7 +7,7 @@ public class JUnit extends AGameState {
 	@Override
 	public void execute() {
 		
-		Flow.INSTANCE.executeGameState(ChooseDice.class);
+		Flow.INSTANCE.executeGameState(StartGame.class);
 
 	}
 

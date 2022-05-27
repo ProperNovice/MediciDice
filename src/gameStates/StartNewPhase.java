@@ -9,7 +9,6 @@ public class StartNewPhase extends AGameState {
 	@Override
 	public void execute() {
 
-		Model.INSTANCE.setScoreTotal();
 		EText.START_NEW_PHASE.show();
 		EText.CONTINUE.show();
 

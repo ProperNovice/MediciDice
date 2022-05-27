@@ -61,4 +61,20 @@ public class PanelDiceColor {
 
 	}
 
+	public void clearPanels() {
+
+		clearPanel(this.listX);
+		clearPanel(this.listO);
+
+	}
+
+	private void clearPanel(ListImageViewAbles<AIcon> list) {
+
+		for (AIcon icon : list)
+			icon.getImageView().setVisible(false);
+
+		list.getArrayList().clear();
+
+	}
+
 }

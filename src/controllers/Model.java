@@ -4,6 +4,9 @@ import dice.ADiceSide;
 import dice.Dice;
 import dice.DiceSideColor;
 import enums.EColor;
+import gameStates.AGameState;
+import gameStates.EndGameLost;
+import gameStates.EndGameWon;
 import panel.PanelDiceCapacity;
 import panel.PanelDiceColor;
 import panel.PanelScore;
@@ -12,6 +15,7 @@ import phases.PhaseI;
 import phases.PhaseII;
 import phases.PhaseIII;
 import utils.ArrayList;
+import utils.Flow;
 import utils.HashMap;
 import utils.SelectImageViewManager;
 import utils.Vector2;
@@ -20,40 +24,93 @@ public enum Model {
 
 	INSTANCE;
 
-	private HashMap<EColor, PanelDiceColor> panelColor = new HashMap<>();
+	private HashMap<EColor, PanelDiceColor> panelDiceColor = new HashMap<>();
+	private ArrayList<APhase> phases = new ArrayList<>();
 	private PanelDiceCapacity panelDiceCapacity = new PanelDiceCapacity();
 	private PanelScore panelScoreTotal = new PanelScore(Credentials.INSTANCE.cPanelScoreTotal, 3);
 	private PanelScore panelScoreCurrentRound = new PanelScore(
 			Credentials.INSTANCE.cPanelScoreCurrentRound, 2);
-	private ArrayList<APhase> phases = new ArrayList<>();
+
+	public void startNewGame() {
+
+		// panel dice colors
+
+		for (EColor eColor : EColor.values())
+			this.panelDiceColor.getValue(eColor).clearPanels();
+
+		// phases
+
+		this.phases.loadOriginal();
+
+		// panel dice capacity
+
+		this.panelDiceCapacity.setCapacity(this.phases.getFirst().getDiceCapacity());
+
+		// panel score total
+
+		this.panelScoreTotal.setScore(0);
+
+		// panel score current round
+
+		this.panelScoreCurrentRound.setScore(0);
+
+	}
+
+	public void handleGameEnded() {
+
+		Class<? extends AGameState> gameState = null;
+
+		if (this.panelScoreTotal.getScore() >= 200)
+			gameState = EndGameWon.class;
+		else
+			gameState = EndGameLost.class;
+
+		Flow.INSTANCE.executeGameState(gameState);
+
+	}
+
+	public boolean gameEnded() {
+		return this.phases.size() == 1;
+	}
 
 	public void setScoreTotal() {
 
-		boolean botHasNineValue = false;
-
-		for (EColor eColor : this.panelColor)
-			if (this.panelColor.getValue(eColor).getScoreBot() >= 9)
-				botHasNineValue = true;
-
-		if (botHasNineValue)
-			return;
-
 		int score = 0;
 
-		for (EColor eColor : this.panelColor) {
-
-			int humanValue = this.panelColor.getValue(eColor).getScoreHuman();
-			int botValue = this.panelColor.getValue(eColor).getScoreBot();
-
-			if (humanValue >= botValue)
-				score += 10;
-
-		}
+		// current score
 
 		int currentScore = this.panelScoreCurrentRound.getScore();
 
 		if (currentScore >= 20)
 			score += currentScore;
+
+		if (currentScore >= 30)
+			score += 10;
+
+		this.panelScoreTotal.addScore(score);
+
+		// monopolies
+
+		for (EColor eColor : this.panelDiceColor)
+			if (this.panelDiceColor.getValue(eColor).getScoreBot() >= 9)
+				return;
+
+		score = 0;
+
+		for (EColor eColor : this.panelDiceColor) {
+
+			int humanValue = this.panelDiceColor.getValue(eColor).getScoreHuman();
+			int botValue = this.panelDiceColor.getValue(eColor).getScoreBot();
+
+			if (humanValue == 0)
+				continue;
+
+			if (humanValue < botValue)
+				continue;
+
+			score += 10;
+
+		}
 
 		this.panelScoreTotal.addScore(score);
 
@@ -108,12 +165,12 @@ public enum Model {
 
 			DiceSideColor diceSideColor = (DiceSideColor) diceSide;
 			EColor eColor = diceSideColor.getEColor();
-			this.panelColor.getValue(eColor).addScoreOneToPlayer();
+			this.panelDiceColor.getValue(eColor).addScoreOneToPlayer();
 
 			if (value != 0)
 				continue;
 
-			this.panelColor.getValue(eColor).addScoreOneToPlayer();
+			this.panelDiceColor.getValue(eColor).addScoreOneToPlayer();
 
 		}
 
@@ -130,12 +187,12 @@ public enum Model {
 
 			DiceSideColor diceSideColor = (DiceSideColor) diceSide;
 			EColor eColor = diceSideColor.getEColor();
-			this.panelColor.getValue(eColor).addScoreOneToBot();
+			this.panelDiceColor.getValue(eColor).addScoreOneToBot();
 
 			if (value != 0)
 				continue;
 
-			this.panelColor.getValue(eColor).addScoreOneToBot();
+			this.panelDiceColor.getValue(eColor).addScoreOneToBot();
 
 		}
 
@@ -163,7 +220,7 @@ public enum Model {
 
 		// panel color
 
-		this.panelColor = new HashMap<>();
+		this.panelDiceColor = new HashMap<>();
 
 		Vector2 cPanelStatistics = Credentials.INSTANCE.cPanelDiceColor.clone();
 
@@ -172,7 +229,7 @@ public enum Model {
 
 		for (EColor eColor : eColors) {
 
-			this.panelColor.put(eColor, new PanelDiceColor(eColor, cPanelStatistics.clone()));
+			this.panelDiceColor.put(eColor, new PanelDiceColor(eColor, cPanelStatistics.clone()));
 
 			cPanelStatistics.y += Credentials.INSTANCE.dIcon;
 			cPanelStatistics.y += Credentials.INSTANCE.dGapBetweenComponents.y;
@@ -184,6 +241,8 @@ public enum Model {
 		this.phases.addLast(new PhaseI());
 		this.phases.addLast(new PhaseII());
 		this.phases.addLast(new PhaseIII());
+
+		this.phases.saveOriginal();
 
 	}
 
