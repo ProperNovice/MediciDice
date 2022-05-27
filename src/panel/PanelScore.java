@@ -10,13 +10,11 @@ public class PanelScore {
 	private IconScore iconCapacity = new IconScore();
 	private PanelNumbers panelNumbers = null;
 
-	public PanelScore() {
-
-		Vector2 coordinates = Credentials.INSTANCE.cPanelScore.clone();
+	public PanelScore(Vector2 coordinates, int digits) {
 
 		this.iconCapacity.getImageView().relocateTopLeft(coordinates);
 
-		this.panelNumbers = new PanelNumbers(Credentials.INSTANCE.dIcon);
+		this.panelNumbers = new PanelNumbers(Credentials.INSTANCE.dIcon, digits);
 		coordinates.x += Credentials.INSTANCE.dIcon;
 		coordinates.x += Credentials.INSTANCE.dGapBetweenComponents.x;
 		this.panelNumbers.getListCredentials().coordinatesList = coordinates;
@@ -26,6 +24,11 @@ public class PanelScore {
 
 	public void setScore(int value) {
 		this.score = value;
+		this.panelNumbers.setNumber(this.score);
+	}
+
+	public void addScore(int value) {
+		this.score += value;
 		this.panelNumbers.setNumber(this.score);
 	}
 

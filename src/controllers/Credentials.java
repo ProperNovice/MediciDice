@@ -18,7 +18,8 @@ public enum Credentials {
 	public ArrayList<Class<?>> lineCastExcludeList = new ArrayList<Class<?>>();
 	public RearrangeTypeEnum rearrangeTypeEnumText = RearrangeTypeEnum.LINEAR;
 	public Vector2 dFrame, dGapBetweenComponents, dGapBetweenComponentsLineCast;
-	public Vector2 cTextPanel, cDice, cPanelDiceColor, cPanelDiceCapacity, cPanelScore;
+	public Vector2 cTextPanel, cDice, cPanelDiceColor, cPanelDiceCapacity, cPanelScoreTotal,
+			cPanelScoreCurrentRound;
 	public double dIcon;
 
 	private Credentials() {
@@ -32,22 +33,20 @@ public enum Credentials {
 		this.dGapBetweenComponents = new Vector2(4, 4);
 		this.dGapBetweenComponentsLineCast = this.dGapBetweenComponents;
 
-		this.cTextPanel = new Vector2(x, y);
-
 		// d icon
 
 		this.dIcon = 100;
 
-		// c panel score
+		// c panel score total
 
 		x = this.gapBetweenBorders;
 		y = this.gapBetweenBorders;
-		this.cPanelScore = new Vector2(x, y);
+		this.cPanelScoreTotal = new Vector2(x, y);
 
 		// c panel dice color
 
 		x = this.gapBetweenBorders;
-		y = this.cPanelScore.y;
+		y = this.cPanelScoreTotal.y;
 		y += this.dIcon + this.dGapBetweenComponents.y;
 		this.cPanelDiceColor = new Vector2(x, y);
 
@@ -57,6 +56,13 @@ public enum Credentials {
 		y = this.cPanelDiceColor.y;
 		y += 5 * (this.dIcon + this.dGapBetweenComponents.x);
 		this.cPanelDiceCapacity = new Vector2(x, y);
+
+		// c panel score current round
+
+		x = this.cPanelDiceCapacity.x;
+		x += 2 * (this.dIcon + this.dGapBetweenComponents.x);
+		y = this.cPanelDiceCapacity.y;
+		this.cPanelScoreCurrentRound = new Vector2(x, y);
 
 		// c dice
 
@@ -72,6 +78,13 @@ public enum Credentials {
 		y = this.cDice.y;
 		y += this.dIcon + this.gapBetweenBorders;
 		this.dFrame = new Vector2(x, y);
+
+		// c text panel
+
+		x = this.cPanelScoreCurrentRound.x;
+		x += 3 * (this.dIcon + this.dGapBetweenComponents.x);
+		y = this.cPanelScoreCurrentRound.y;
+		this.cTextPanel = new Vector2(x, y);
 
 	}
 

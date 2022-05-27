@@ -3,6 +3,7 @@ package dice;
 import controllers.Credentials;
 import enums.EColor;
 import utils.ArrayList;
+import utils.Flow;
 import utils.ImageView;
 import utils.Interfaces.IEventHandlerAble;
 import utils.Interfaces.IImageViewAble;
@@ -62,6 +63,7 @@ public class Dice implements IImageViewAble, IEventHandlerAble {
 	public void handleMouseButtonPressed() {
 
 		print();
+		Flow.INSTANCE.getGameStateCurrent().handleDicePressed(this);
 
 	}
 

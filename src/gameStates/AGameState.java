@@ -1,5 +1,6 @@
 package gameStates;
 
+import dice.Dice;
 import enums.EText;
 import javafx.scene.input.KeyCode;
 import utils.KeyCodeHandler;
@@ -43,6 +44,10 @@ public abstract class AGameState {
 
 	protected final void concealText() {
 		Text.INSTANCE.concealText();
+	}
+
+	public void handleDicePressed(Dice dice) {
+
 	}
 
 }

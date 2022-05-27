@@ -23,19 +23,21 @@ public class PanelDiceColor {
 
 		this.listX = new ListImageViewAbles<>();
 		this.listX.getListCredentials().coordinatesList = coordinates;
+		this.listX.getArrayList().setCapacity(12);
 
 		// list o
 
 		this.listO = new ListImageViewAbles<>();
 		this.listO.getListCredentials().coordinatesList = coordinates;
+		this.listX.getArrayList().setCapacity(12);
 
 	}
 
-	public void addScorePlayer() {
+	public void addScoreOneToPlayer() {
 		addScoreRelocate(IconX.class, this.listX);
 	}
 
-	public void addScoreBot() {
+	public void addScoreOneToBot() {
 		addScoreRelocate(IconO.class, this.listO);
 	}
 
@@ -50,6 +52,9 @@ public class PanelDiceColor {
 
 	private void addScoreRelocate(Class<? extends AIcon> iconClass,
 			ListImageViewAbles<AIcon> list) {
+
+		if (list.getArrayList().isMaxedCapacity())
+			return;
 
 		AIcon icon = ObjectPool.INSTANCE.acquire(iconClass);
 

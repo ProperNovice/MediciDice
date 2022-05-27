@@ -24,8 +24,8 @@ public class PanelDiceCapacity {
 
 	}
 
-	public void reduceCapacity(int value) {
-		this.capacity -= value;
+	public void reduceCapacityByOne() {
+		this.capacity--;
 		displayCapacity();
 	}
 

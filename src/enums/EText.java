@@ -11,6 +11,8 @@ public enum EText {
 	YOU_WON("You won", TextTypeEnum.INDICATOR),
 	YOU_LOST("You lost", TextTypeEnum.INDICATOR),
 	VOID("", TextTypeEnum.INDICATOR),
+	ROLL_DICE("Roll dice", TextTypeEnum.OPTION),
+	CHOOSE_DICE("Choose dice", TextTypeEnum.INDICATOR),
 
 	;
 

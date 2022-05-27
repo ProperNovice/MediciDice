@@ -65,6 +65,10 @@ public class PanelNumbers {
 		for (IImageViewAble imageViewAbleTemp : this.list)
 			imageViewAbleTemp.getImageView().setWidth(dimension);
 
+		// set gap between components to 0
+
+		this.list.getListCredentials().gapBetweenComponents = new Vector2(dimension, 0);
+
 		// relocate
 
 		this.list.relocateImageViews();
