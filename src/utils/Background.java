@@ -12,7 +12,7 @@ public class Background implements IImageViewAble, IEventHandlerAble {
 
 	@Override
 	public void handleMouseButtonPressed() {
-		ShutDown.INSTANCE.execute();
+//		ShutDown.INSTANCE.execute();
 	}
 
 }
