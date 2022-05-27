@@ -27,7 +27,7 @@ public enum Model {
 	private HashMap<EColor, PanelDiceColor> panelDiceColor = new HashMap<>();
 	private ArrayList<APhase> phases = new ArrayList<>();
 	private PanelDiceCapacity panelDiceCapacity = new PanelDiceCapacity();
-	private PanelScore panelScoreTotal = new PanelScore(Credentials.INSTANCE.cPanelScoreTotal, 3);
+	private PanelScore panelScoreTotal = new PanelScore(Credentials.INSTANCE.cPanelScoreTotal, 0);
 	private PanelScore panelScoreCurrentRound = new PanelScore(
 			Credentials.INSTANCE.cPanelScoreCurrentRound, 2);
 
